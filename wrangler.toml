@@ -7,7 +7,7 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"                     # این اسم در کد به عنوان env.DB در دسترسه
 database_name = "bazaarcheir_db"
-database_id = "PUT_YOUR_DATABASE_ID_HERE"
+database_id = "439727ce-5461-40ca-8825-19bfd3336da9"
 
 # متغیرهای محیطی (توکن ربات را در .dev.vars یا با wrangler secret ست کنید، نه اینجا)
 # دستور برای ست کردن توکن به صورت امن:
