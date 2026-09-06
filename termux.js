@@ -1,0 +1,8 @@
+import fs from 'node:fs/promises';
+import {handleUpdate,processPendingDeletions} from './src/index.js';
+import {getMe,deleteWebhook,getUpdates} from './src/telegram.js';
+try{for(const line of (await fs.readFile('.env','utf8')).split(/\r?\n/)){const m=line.match(/^\s*([A-Za-z_][\w]*)\s*=\s*(.*?)\s*$/);if(m)process.env[m[1]]=m[2].replace(/^['"]|['"]$/g,'')}}catch{}
+if(!process.env.BOT_TOKEN){console.error('❌ BOT_TOKEN تنظیم نشده است.');process.exit(1)}
+const env={BOT_TOKEN:process.env.BOT_TOKEN,ADMIN_ID:process.env.ADMIN_ID||'',CONFIRM_CHANNEL:process.env.CONFIRM_CHANNEL||'',MAIN_CHANNEL:process.env.MAIN_CHANNEL||''};let offset=0,stop=false;
+process.on('SIGINT',()=>stop=true);process.on('SIGTERM',()=>stop=true);
+try{await deleteWebhook(env);const me=await getMe(env);console.log(`✅ اتصال موفق: @${me.result.username}`);console.log('🟢 شیپورک فعال است.');while(!stop){try{const r=await getUpdates(env,offset);for(const u of r.result||[]){offset=u.update_id+1;try{await handleUpdate(env,u)}catch(e){console.error('⚠️ پردازش:',e.message)}}await processPendingDeletions(env)}catch(e){console.error('⚠️ تلگرام:',e.message,e.cause?.message||'',e.stack||'');await new Promise(r=>setTimeout(r,5000))}}}catch(e){console.error('❌ راه‌اندازی:',e.message);process.exit(1)}

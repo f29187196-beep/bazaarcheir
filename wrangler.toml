@@ -1,0 +1,18 @@
+name = "sheypoorak-bot"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# دیتابیس D1
+[[d1_databases]]
+binding = "DB"                     # این اسم در کد به عنوان env.DB در دسترسه
+database_name = "sheypoorak_db"
+database_id = "PUT_YOUR_DATABASE_ID_HERE"
+
+# متغیرهای محیطی (توکن ربات را در .dev.vars یا با wrangler secret ست کنید، نه اینجا)
+# دستور برای ست کردن توکن به صورت امن:
+#   wrangler secret put BOT_TOKEN
+
+# اجرای خودکار هر ۱ دقیقه برای پاک کردن پیام‌های هشدار منقضی‌شده
+[triggers]
+crons = ["* * * * *"]

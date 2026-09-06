@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+const dir='./data';
+await fs.rm(dir,{recursive:true,force:true});
+const db=await import('./src/db.js');
+await db.setLock(-100,'link',true); if(!(await db.isLocked(-100,'link'))) throw new Error('lock');
+await db.addToWhitelist(-100,42); if(!(await db.isWhitelisted(-100,42))) throw new Error('whitelist');
+await db.setSetting(-100,'warning_max',10); if(await db.getSetting(-100,'warning_max')!==10) throw new Error('setting');
+await db.addFilter(-100,'کلاه'); if(!(await db.listFilters(-100)).includes('کلاه')) throw new Error('filter');
+await fs.rm(dir,{recursive:true,force:true});
+console.log('✅ تست داخلی مبصر شیپورک موفق بود.');
