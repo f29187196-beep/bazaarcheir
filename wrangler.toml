@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 # دیتابیس D1
 [[d1_databases]]
 binding = "DB"                     # این اسم در کد به عنوان env.DB در دسترسه
-database_name = "sheypoorak_db"
+database_name = "bazaarcheir_db"
 database_id = "PUT_YOUR_DATABASE_ID_HERE"
 
 # متغیرهای محیطی (توکن ربات را در .dev.vars یا با wrangler secret ست کنید، نه اینجا)
