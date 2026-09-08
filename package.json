@@ -1,1 +1,0 @@
-{"name":"sheypoorak-termux","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node termux.js","test":"node test.js && node test-ad-only.js"}}
