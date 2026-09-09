@@ -467,7 +467,7 @@ async def status(update, context):
 def main():
     if not TOKEN:
         print("ERROR: BOT_TOKEN تنظیم نشده است.")
-        print("Termux: export BOT_TOKEN='توکن'")
+        print("Termux: export BOT_TOKEN='توکن_خودت'")
         return
     init_db()
     app=Application.builder().token(TOKEN).build()
